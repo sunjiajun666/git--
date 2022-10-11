@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+<tr>
+    <th>士兵编号</th>
+    <th>士兵名字</th>
+    <th>士兵武器</th>
+</tr>
+    <tr th:each="item :${allSoldiers}">
+        <td th:text="${item.SoldierId}"></td>
+        <td th:text="${item.SoldierName}"></td>
+        <td th:text="${item.SoldierWeapon}"></td>
+        <td><a th:href="@{/Soldier(method='delSoldier',id=${item.SoldierId}) }">删除</a></td>
+        <td><a th:href="@{/Soldier(method='updateSoldier',id=${item.SoldierId},name=${item.SoldierName},waepon=${item.SoldierWeapon} ) }">编辑</a></td>
+    </tr>
+
+</table>
+<form action="/demo/Soldier?method=addSoldier" method="post">
+
+    <input type="text" name="username">
+    <input type="text" name="userweapon">
+    <input type="submit" value="添加">
+</form>
+</body>
+</html>
